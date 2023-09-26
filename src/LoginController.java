@@ -19,9 +19,10 @@ public class LoginController {
 
                 //We verify if the information is correct
                 if(usernameExists && bank.getBankHashmap().get(username).equals(password)){
-                    JOptionPane.showMessageDialog(loginUI.getFrame(), "Goodjob!");
+                    JOptionPane.showMessageDialog(loginUI.getFrame(), "Connection success!");
                 }
-                else JOptionPane.showMessageDialog(loginUI.getFrame(), "try again");
+
+                else JOptionPane.showMessageDialog(loginUI.getFrame(), "Error : username doesn't exist or wrong password");
 
             }
         });
