@@ -29,6 +29,7 @@ public class LoginController {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
+                            //***CHANGE TO BANKINGCONTROLLER(NEW BANKINGPLATFORMUI, ...)
                             new BankingPlatformUI();
                         }
                     });

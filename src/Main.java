@@ -7,8 +7,7 @@ public class Main {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                LoginUI loginUI = new LoginUI();
-                new LoginController(loginUI,bank);
+                new LoginController(new LoginUI(),bank);
             }
         });
     }
