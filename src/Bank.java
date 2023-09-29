@@ -9,7 +9,7 @@ public class Bank {
 
     public Bank(){
         //Create the test individual to see if the login logic works
-        testIndividual = new Individual("test","test");
+        testIndividual = new Individual("Bob","test");
         //Create the List that will act like a quick database
         individualList = new ArrayList<>();
         //Add the test individual to the list
