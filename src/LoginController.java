@@ -15,14 +15,14 @@ public class LoginController {
                 String username = loginUI.getUsernameField().getText();
                 String password = new String(loginUI.getPasswordField().getPassword());
 
-                boolean usernameExists = bank.getBankHashmap().containsKey(username);
+                boolean usernameExists = bank.getLoginHashMap().containsKey(username);
 
                 //We verify if the information is correct
-                if(usernameExists && bank.getBankHashmap().get(username).equals(password)){
+                if(usernameExists && bank.getLoginHashMap().get(username).equals(password)){
                     JOptionPane.showMessageDialog(loginUI.getFrame(), "Connection success!");
                 }
 
-                else JOptionPane.showMessageDialog(loginUI.getFrame(), "Error : username doesn't exist or wrong password");
+                else JOptionPane.showMessageDialog(loginUI.getFrame(), "Error : Wrong username or password...");
 
             }
         });

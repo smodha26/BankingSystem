@@ -24,7 +24,7 @@ public class LoginUI {
         frame.add(usernameField);
         frame.add(passwordLabel);
         frame.add(passwordField);
-        frame.add(new JLabel()); // Empty label for spacing
+        frame.add(new JLabel());
         frame.add(connectButton);
 
         frame.setLocationRelativeTo(null);
