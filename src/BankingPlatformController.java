@@ -1,5 +1,9 @@
 public class BankingPlatformController {
-    /***
-     * TO-DO
-     */
+
+    private BankingPlatformUI bankingPlatformUI;
+
+    public BankingPlatformController(BankingPlatformUI bankingPlatformUI){
+        this.bankingPlatformUI = bankingPlatformUI;
+    }
+
 }

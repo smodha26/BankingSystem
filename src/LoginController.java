@@ -8,36 +8,41 @@ public class LoginController {
 
     public LoginController(LoginUI loginUI, Bank bank) {
         this.loginUI = loginUI;
-        this.bank=bank;
-        loginUI.getConnectButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = loginUI.getUsernameField().getText();
-                String password = new String(loginUI.getPasswordField().getPassword());
+        this.bank = bank;
 
-                boolean usernameExists = bank.getLoginHashMap().containsKey(username);
-                boolean loginSuccess = usernameExists && bank.getLoginHashMap().get(username).equals(password);
+        // Attach the ActionListener to the connectButton
+        loginUI.getConnectButton().addActionListener(new ConnectButtonListener());
+    }
 
-                //We verify if the information is correct
-                if(loginSuccess){
-                    JOptionPane.showMessageDialog(loginUI.getFrame(), "Connection success!");
+    private class ConnectButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String username = loginUI.getUsernameField().getText();
+            String password = new String(loginUI.getPasswordField().getPassword());
 
-                    //Set the singleton for the current user
-                    CurrentUserSingleton.getInstance().setCurrentUser(bank.getTestIndividual());
+            boolean usernameExists = bank.getLoginHashMap().containsKey(username);
+            boolean loginSuccess = usernameExists && bank.getLoginHashMap().get(username).equals(password);
 
-                    // Open the BankingPlatformUI when the login is successful
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            //***CHANGE TO BANKINGCONTROLLER(NEW BANKINGPLATFORMUI, ...)
-                            new BankingPlatformUI();
-                        }
-                    });
-                }
+            if (loginSuccess) {
+                // Display a success message
+                JOptionPane.showMessageDialog(loginUI.getFrame(), "Connection success!");
 
-                else JOptionPane.showMessageDialog(loginUI.getFrame(), "Error : Wrong username or password...");
+                // Set the current user using a Singleton
+                CurrentUserSingleton.getInstance().setCurrentUser(bank.getTestIndividual());
 
+                // Open the BankingPlatformUI when the login is successful
+                openBankingPlatformUI();
+            } else {
+                // Display an error message for incorrect login
+                JOptionPane.showMessageDialog(loginUI.getFrame(), "Error: Wrong username or password...");
             }
+        }
+    }
+
+    private void openBankingPlatformUI() {
+        SwingUtilities.invokeLater(() -> {
+            // Create a BankingPlatformController instance and pass the BankingPlatformUI as parameters
+            new BankingPlatformController(new BankingPlatformUI());
         });
     }
 }
