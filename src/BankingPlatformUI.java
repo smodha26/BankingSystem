@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BankingPlatformUI extends JFrame {
-    // Private variables
     private JLabel balanceLabel;
     private JLabel currentBalanceLabel;
     private JLabel amountLabel;
@@ -12,7 +11,7 @@ public class BankingPlatformUI extends JFrame {
     private Individual individual = CurrentUserSingleton.getInstance().getCurrentUser();
 
     public BankingPlatformUI() {
-        setTitle("Bank Platform for " + individual.getUsername());
+        setTitle("User : " + individual.getUsername());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -53,18 +52,6 @@ public class BankingPlatformUI extends JFrame {
         add(panel);
 
         setVisible(true);
-    }
-
-    public JLabel getBalanceLabel() {
-        return balanceLabel;
-    }
-
-    public JLabel getCurrentBalanceLabel(){
-        return currentBalanceLabel;
-    }
-
-    public JLabel getAmountLabel() {
-        return amountLabel;
     }
 
     public JTextField getAmountField() {

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 public class BankingPlatformController {
     private BankingPlatformUI bankingPlatformUI;
     private Individual individual = CurrentUserSingleton.getInstance().getCurrentUser();
+    private float amount;
 
     public BankingPlatformController(BankingPlatformUI bankingPlatformUI) {
         this.bankingPlatformUI = bankingPlatformUI;
@@ -17,11 +18,23 @@ public class BankingPlatformController {
     private class WithdrawButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //TODO : Verify if user has enough amount in balance to withdraw the requested amount
-            //TODO :If yes, change current balance and send success message
-            //TODO : Note : implement a logic that only allows float
+            //TODO : Note : implement a logic that only allows float in the "IF" (no special caracter or letters)
 
-            //TODO : if not, send an error message
+            //TextField must not be empty, and it must only have float
+            if(!bankingPlatformUI.getAmountField().getText().trim().isEmpty()){
+                // Get the amount from textField and parse it into Float for the calcul
+                amount = Float.parseFloat(bankingPlatformUI.getAmountField().getText());
+
+                //Verify if user has enough amount in balance to withdraw the requested amount
+                if(individual.getBalance()-amount>=0){
+                    // Modify new Balance by calling the current individual (singleton)
+                    individual.setBalance(individual.getBalance()-amount);
+                    bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(individual.getBalance()));
+                    JOptionPane.showMessageDialog(bankingPlatformUI, "Successful transaction");
+                }
+                else JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Current balance is insufficient");
+            }
+            else JOptionPane.showMessageDialog(bankingPlatformUI, "Error: field cannot be empty");
         }
     }
 
@@ -30,15 +43,15 @@ public class BankingPlatformController {
         public void actionPerformed(ActionEvent e) {
             //TODO : Note : implement a logic that only allows float in the "IF" (no special caracter or letters)
 
-            //If textField isn't empty
+            //TextField must not be empty, and it must only have float
             if(!bankingPlatformUI.getAmountField().getText().trim().isEmpty()){
                 // Get the amount from textField and parse it into Float for the calcul
-                float amount = Float.parseFloat(bankingPlatformUI.getAmountField().getText());
+                amount = Float.parseFloat(bankingPlatformUI.getAmountField().getText());
 
                 // Modify new Balance by calling the current individual (singleton)
                 individual.setBalance(individual.getBalance()+amount);
                 bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(individual.getBalance()));
-
+                JOptionPane.showMessageDialog(bankingPlatformUI, "Successful transaction");
             }
             else JOptionPane.showMessageDialog(bankingPlatformUI, "Error: field cannot be empty");
         }
