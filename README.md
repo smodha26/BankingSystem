@@ -19,6 +19,16 @@ Please use these credentials for a successful login.
 
 The project utilizes the Singleton design pattern through the `CurrentUserSingleton` class. This design pattern ensures that there is only one instance of the `CurrentUserSingleton` class throughout the application. The `CurrentUserSingleton` is responsible for managing the current individual's instance, providing a global point of access to the current user's data.
 
+### Model-View-Controller (MVC)
+
+The project follows the Model-View-Controller (MVC) architectural pattern. This separation of concerns helps maintain a clear distinction between different aspects of the application:
+
+- **Model**: Represented by the `Bank` and the `Individual` class, it encapsulates the data and business logic, including user account details and balance.
+
+- **View**: Implemented in the `LoginUI` and the `BankingPlatformUI` class, it provides the user interface for interacting with the application.
+
+- **Controller**: The application logic is separated into controller classes (`LoginController` and `BankingPlatformController`), responsible for handling user authentication, banking operations, and interactions between the model and view.
+
 ## Project Structure
 
 The project is organized with a separation of concerns between the user interface (UI) and the application logic:
