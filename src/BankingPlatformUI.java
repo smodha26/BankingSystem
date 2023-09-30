@@ -2,18 +2,25 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BankingPlatformUI extends JFrame {
+    // Private variables
+    private JLabel balanceLabel;
+    private JLabel amountLabel;
+    private JTextField amountField;
+    private JButton withdrawButton;
+    private JButton depositButton;
+
     public BankingPlatformUI() {
         setTitle("Bank Platform for "); //+ individual.getUsername());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 200);
         setLocationRelativeTo(null);
 
-        JLabel balanceLabel = new JLabel("Current Balance:");
-        JLabel amountLabel = new JLabel("Enter Amount:");
-        JTextField amountField = new JTextField(10);
+        balanceLabel = new JLabel("Current Balance:");
+        amountLabel = new JLabel("Enter Amount:");
+        amountField = new JTextField(10);
 
-        JButton withdrawButton = new JButton("Withdraw");
-        JButton depositButton = new JButton("Deposit");
+        withdrawButton = new JButton("Withdraw");
+        depositButton = new JButton("Deposit");
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -43,5 +50,26 @@ public class BankingPlatformUI extends JFrame {
         add(panel);
 
         setVisible(true);
+    }
+
+    // Getters for the private variables
+    public JLabel getBalanceLabel() {
+        return balanceLabel;
+    }
+
+    public JLabel getAmountLabel() {
+        return amountLabel;
+    }
+
+    public JTextField getAmountField() {
+        return amountField;
+    }
+
+    public JButton getWithdrawButton() {
+        return withdrawButton;
+    }
+
+    public JButton getDepositButton() {
+        return depositButton;
     }
 }
