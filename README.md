@@ -53,4 +53,4 @@ To run the Banking Platform application:
 
 1. Compile the Java source files.
 2. Execute the main class (`Main.java`) to start the application.
-3. Please use the following login authentication information: Username: 'Bob' | Password: 'test' 
+3. Please use the following login authentication information: `Username: Bob` | `Password: test`
