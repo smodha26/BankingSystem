@@ -4,19 +4,22 @@ import java.awt.*;
 public class BankingPlatformUI extends JFrame {
     // Private variables
     private JLabel balanceLabel;
+    private JLabel currentBalanceLabel;
     private JLabel amountLabel;
     private JTextField amountField;
     private JButton withdrawButton;
     private JButton depositButton;
+    private Individual individual = CurrentUserSingleton.getInstance().getCurrentUser();
 
     public BankingPlatformUI() {
-        setTitle("Bank Platform for "); //+ individual.getUsername());
+        setTitle("Bank Platform for " + individual.getUsername());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 200);
+        setSize(400, 300);
         setLocationRelativeTo(null);
 
         balanceLabel = new JLabel("Current Balance:");
         amountLabel = new JLabel("Enter Amount:");
+        currentBalanceLabel = new JLabel("0.00$");
         amountField = new JTextField(10);
 
         withdrawButton = new JButton("Withdraw");
@@ -39,7 +42,7 @@ public class BankingPlatformUI extends JFrame {
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        panel.add(new JLabel("$0.00"), gbc);
+        panel.add(currentBalanceLabel, gbc);
 
         gbc.gridy = 1;
         panel.add(amountField, gbc);
@@ -56,6 +59,10 @@ public class BankingPlatformUI extends JFrame {
         return balanceLabel;
     }
 
+    public JLabel getCurrentBalanceLabel(){
+        return currentBalanceLabel;
+    }
+
     public JLabel getAmountLabel() {
         return amountLabel;
     }
@@ -70,5 +77,9 @@ public class BankingPlatformUI extends JFrame {
 
     public JButton getDepositButton() {
         return depositButton;
+    }
+
+    public void setCurrentBalanceLabel(String string){
+        currentBalanceLabel.setText(string);
     }
 }
