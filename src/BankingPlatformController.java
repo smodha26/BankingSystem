@@ -24,13 +24,10 @@ public class BankingPlatformController {
             if(!bankingPlatformUI.getAmountField().getText().trim().isEmpty()){
                 // Get the amount from textField and parse it into Float for the calcul
                 amount = Float.parseFloat(bankingPlatformUI.getAmountField().getText());
-
+                boolean sufficientAmount = individual.getBalance()-amount>=0;
                 //Verify if user has enough amount in balance to withdraw the requested amount
-                if(individual.getBalance()-amount>=0){
-                    // Modify new Balance by calling the current individual (singleton)
-                    individual.setBalance(individual.getBalance()-amount);
-                    bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(individual.getBalance()));
-                    JOptionPane.showMessageDialog(bankingPlatformUI, "Successful transaction");
+                if(sufficientAmount){
+                    withdrawBalance();
                 }
                 else JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Current balance is insufficient");
             }
@@ -48,12 +45,23 @@ public class BankingPlatformController {
                 // Get the amount from textField and parse it into Float for the calcul
                 amount = Float.parseFloat(bankingPlatformUI.getAmountField().getText());
 
-                // Modify new Balance by calling the current individual (singleton)
-                individual.setBalance(individual.getBalance()+amount);
-                bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(individual.getBalance()));
-                JOptionPane.showMessageDialog(bankingPlatformUI, "Successful transaction");
+                depositBalance();
             }
             else JOptionPane.showMessageDialog(bankingPlatformUI, "Error: field cannot be empty");
         }
+    }
+
+    private void withdrawBalance(){
+        // Modify new Balance by calling the current individual (singleton)
+        individual.setBalance(individual.getBalance()-amount);
+        bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(individual.getBalance()));
+        JOptionPane.showMessageDialog(bankingPlatformUI, "Successful transaction");
+    }
+
+    private void depositBalance(){
+        // Modify new Balance by calling the current individual (singleton)
+        individual.setBalance(individual.getBalance()+amount);
+        bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(individual.getBalance()));
+        JOptionPane.showMessageDialog(bankingPlatformUI, "Successful transaction");
     }
 }
