@@ -30,6 +30,9 @@ public class LoginController {
                 // Set the current user using a Singleton
                 CurrentUserSingleton.getInstance().setCurrentUser(bank.getTestIndividual());
 
+                //Close LoginUI
+                loginUI.getFrame().dispose();
+
                 // Open the BankingPlatformUI when the login is successful
                 openBankingPlatformUI();
             } else {

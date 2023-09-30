@@ -52,7 +52,6 @@ public class BankingPlatformUI extends JFrame {
         setVisible(true);
     }
 
-    // Getters for the private variables
     public JLabel getBalanceLabel() {
         return balanceLabel;
     }

@@ -7,7 +7,7 @@ public class BankingPlatformController {
     public BankingPlatformController(BankingPlatformUI bankingPlatformUI) {
         this.bankingPlatformUI = bankingPlatformUI;
 
-        // Attach action listeners to buttons
+        // Attach action listeners to withdraw and deposit buttons
         bankingPlatformUI.getWithdrawButton().addActionListener(new WithdrawButtonListener());
         bankingPlatformUI.getDepositButton().addActionListener(new DepositButtonListener());
     }
@@ -15,20 +15,20 @@ public class BankingPlatformController {
     private class WithdrawButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Handle the "Withdraw" button click logic here
-            // You can access the UI components using bankingPlatformUI
-            // Example: String amountText = bankingPlatformUI.getAmountField().getText();
-            // Perform the withdrawal logic and update the UI as needed
+            //TODO : Verify if user has enough amount in balance to withdraw the requested amount
+            //TODO :If yes, change current balance and send success message
+            //TODO : Note : implement a logic that only allows float
+
+            //TODO : if not, send an error message
         }
     }
 
     private class DepositButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Handle the "Deposit" button click logic here
-            // You can access the UI components using bankingPlatformUI
-            // Example: String amountText = bankingPlatformUI.getAmountField().getText();
-            // Perform the deposit logic and update the UI as needed
+            //TODO : Note : implement a logic that only allows float
+
+
         }
     }
 }

@@ -14,14 +14,6 @@ public class Bank {
         loginHashMap.put(testIndividual.getUsername(), testIndividual.getPassword());
     }
 
-    public void depositBalance(float amount, Individual individual){
-        individual.setBalance(individual.getBalance() + amount);
-    }
-
-    public void withdrawBalance(float amount, Individual individual){
-        individual.setBalance(individual.getBalance() - amount);
-    }
-
     public Individual getTestIndividual() {
         return testIndividual;
     }
