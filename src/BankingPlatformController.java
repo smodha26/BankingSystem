@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class BankingPlatformController {
     private BankingPlatformUI bankingPlatformUI;
@@ -34,6 +36,7 @@ public class BankingPlatformController {
                         //Verify if user has enough amount in balance to withdraw the requested amount
                         if(sufficientAmount){
                             withdrawBalance();
+                            putDataIntoTransactionHistory("Withdraw",amount);
                         }
                         else JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Current balance is insufficient");
                     }
@@ -65,6 +68,7 @@ public class BankingPlatformController {
                     //Verify if the number entered is not negative
                     if(amount >= 0){
                         depositBalance();
+                        putDataIntoTransactionHistory("Deposit",amount);
                     }
                     else if(amount < 0){
                         JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Please enter a non-negative amount");
@@ -90,5 +94,12 @@ public class BankingPlatformController {
         individual.setBalance(individual.getBalance()+amount);
         bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(individual.getBalance()));
         JOptionPane.showMessageDialog(bankingPlatformUI, "Successful transaction");
+    }
+
+    private void putDataIntoTransactionHistory(String string, float amount){
+        DateTimeFormatter realTime = DateTimeFormatter.ofPattern("yyyy-MM-dd | HH:mm");
+        Object[] rowData = {LocalDateTime.now().format(realTime), string, amount};
+        bankingPlatformUI.getTableModel().addRow(rowData);
+        bankingPlatformUI.getTableModel().fireTableDataChanged();
     }
 }
