@@ -20,8 +20,6 @@ public class BankingPlatformController {
     private class WithdrawButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //TODO : The Exception isn't shown on the UI
-
             //TextField must not be empty, and it must only have float number
             String input = bankingPlatformUI.getAmountField().getText().trim();
 
@@ -55,8 +53,6 @@ public class BankingPlatformController {
     private class DepositButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //TODO : The Exception isn't shown on the UI
-
             //TextField must not be empty, and it must only have float number
             String input = bankingPlatformUI.getAmountField().getText().trim();
 
