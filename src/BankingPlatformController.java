@@ -18,18 +18,32 @@ public class BankingPlatformController {
     private class WithdrawButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //TODO : Note : implement a logic that only allows float in the "IF" (no special caracter or letters)
+            //TODO : The Exception isn't shown on the UI
 
-            //TextField must not be empty, and it must only have float
-            if(!bankingPlatformUI.getAmountField().getText().trim().isEmpty()){
+            //TextField must not be empty, and it must only have float number
+            String input = bankingPlatformUI.getAmountField().getText().trim();
+
+            if(!input.isEmpty()){
                 // Get the amount from textField and parse it into Float for the calcul
                 amount = Float.parseFloat(bankingPlatformUI.getAmountField().getText());
                 boolean sufficientAmount = individual.getBalance()-amount>=0;
-                //Verify if user has enough amount in balance to withdraw the requested amount
-                if(sufficientAmount){
-                    withdrawBalance();
+
+                try{
+                    //Verify if the number entered is not negative
+                    if(amount >= 0){
+                        //Verify if user has enough amount in balance to withdraw the requested amount
+                        if(sufficientAmount){
+                            withdrawBalance();
+                        }
+                        else JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Current balance is insufficient");
+                    }
+                    else if(amount < 0){
+                        JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Please enter a non-negative amount");
+                    }
+                    else throw new NumberFormatException("Error: Invalid input, please enter a valid number.");
+                }catch(NumberFormatException exception){
+                    JOptionPane.showMessageDialog(bankingPlatformUI, exception.getMessage());
                 }
-                else JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Current balance is insufficient");
             }
             else JOptionPane.showMessageDialog(bankingPlatformUI, "Error: field cannot be empty");
         }
@@ -38,14 +52,27 @@ public class BankingPlatformController {
     private class DepositButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //TODO : Note : implement a logic that only allows float in the "IF" (no special caracter or letters)
+            //TODO : The Exception isn't shown on the UI
 
-            //TextField must not be empty, and it must only have float
-            if(!bankingPlatformUI.getAmountField().getText().trim().isEmpty()){
+            //TextField must not be empty, and it must only have float number
+            String input = bankingPlatformUI.getAmountField().getText().trim();
+
+            if(!input.isEmpty()){
                 // Get the amount from textField and parse it into Float for the calcul
                 amount = Float.parseFloat(bankingPlatformUI.getAmountField().getText());
 
-                depositBalance();
+                try{
+                    //Verify if the number entered is not negative
+                    if(amount >= 0){
+                        depositBalance();
+                    }
+                    else if(amount < 0){
+                        JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Please enter a non-negative amount");
+                    }
+                    else throw new NumberFormatException("Error: Invalid input, please enter a valid number.");
+                }catch(NumberFormatException exception){
+                    JOptionPane.showMessageDialog(bankingPlatformUI, exception.getMessage());
+                }
             }
             else JOptionPane.showMessageDialog(bankingPlatformUI, "Error: field cannot be empty");
         }
