@@ -10,7 +10,7 @@ public class BankingPlatformUI extends JFrame {
     private JButton withdrawButton;
     private JButton depositButton;
     private Individual individual = CurrentUserSingleton.getInstance().getCurrentUser();
-    private  JTable transactionHistoryTable;
+    private JTable transactionHistoryTable;
     private DefaultTableModel tableModel;
     private JScrollPane scrollPane;
 
@@ -107,6 +107,7 @@ public class BankingPlatformUI extends JFrame {
     public JButton getDepositButton() {
         return depositButton;
     }
+    public DefaultTableModel getTableModel(){ return tableModel; }
 
     public void setCurrentBalanceLabel(String string){
         currentBalanceLabel.setText(string + " $");
