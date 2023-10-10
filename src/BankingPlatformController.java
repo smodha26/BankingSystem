@@ -96,9 +96,9 @@ public class BankingPlatformController {
         JOptionPane.showMessageDialog(bankingPlatformUI, "Successful transaction");
     }
 
-    private void putDataIntoTransactionHistory(String string, float amount){
+    private void putDataIntoTransactionHistory(String transactionType, float amount){
         DateTimeFormatter realTime = DateTimeFormatter.ofPattern("yyyy-MM-dd | HH:mm");
-        Object[] rowData = {LocalDateTime.now().format(realTime), string, amount};
+        Object[] rowData = {LocalDateTime.now().format(realTime), transactionType, amount};
         bankingPlatformUI.getTableModel().addRow(rowData);
         bankingPlatformUI.getTableModel().fireTableDataChanged();
     }
