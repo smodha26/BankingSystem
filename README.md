@@ -1,5 +1,14 @@
 # Banking System Platform
 
+## Project configuration and usage
+
+To run the Banking Platform application:
+
+1. Make sure you have Java Development Kit (JDK) installed on your system. 
+2. Build the project, choose a SDK and compile the Java source files.
+3. Execute the main class (`Main.java`) to start the application.
+4. Please use the following login authentication information: `Username: Bob` | `Password: test`
+
 ## Project Description
 
 The Banking Platform is a Java-based application that simulates a basic banking system. It allows users to interact with their bank accounts by making deposits and withdrawals.
@@ -46,11 +55,3 @@ The project is organized with a separation of concerns between the user interfac
 - The `BankingPlatformController` class manages banking operations, such as deposits and withdrawals.
 - The `Individual` class represents individual user data, including username, password, and balance.
 - The `CurrentUserSingleton` class manages the current user's instance using the Singleton pattern.
-
-## Usage
-
-To run the Banking Platform application:
-
-1. Compile the Java source files.
-2. Execute the main class (`Main.java`) to start the application.
-3. Please use the following login authentication information: `Username: Bob` | `Password: test`
