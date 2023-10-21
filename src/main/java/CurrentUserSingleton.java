@@ -1,3 +1,5 @@
+package main.java;
+
 public class CurrentUserSingleton {
     private static CurrentUserSingleton instance;
     private Individual currentUser;
