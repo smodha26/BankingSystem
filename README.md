@@ -2,7 +2,7 @@
 
 ## Project Description
 
-The Banking Platform is a Java-based application that simulates a basic banking system. It allows users to interact with their jsonDataManager accounts by making deposits and withdrawals.
+The Banking Platform is a Java-based application that simulates a basic banking system. It allows users to interact with their bank accounts by making deposits and withdrawals.
 
 ### Login Authentication & Test Account
 
