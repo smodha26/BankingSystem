@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 
 public class LoginController {
     private LoginUI loginUI;
-    private Bank bank;
+    private JsonDataManager jsonDataManager;
 
-    public LoginController(LoginUI loginUI, Bank bank) {
+    public LoginController(LoginUI loginUI, JsonDataManager jsonDataManager) {
         this.loginUI = loginUI;
-        this.bank = bank;
+        this.jsonDataManager = jsonDataManager;
 
         // Attach the ActionListener to the connectButton
         loginUI.getConnectButton().addActionListener(new ConnectButtonListener());
@@ -22,15 +22,15 @@ public class LoginController {
             String username = loginUI.getUsernameField().getText();
             String password = new String(loginUI.getPasswordField().getPassword());
 
-            boolean usernameExists = bank.getLoginHashMap().containsKey(username);
-            boolean loginSuccess = usernameExists && bank.getLoginHashMap().get(username).equals(password);
+            boolean usernameExists = jsonDataManager.getLoginHashMap().containsKey(username);
+            boolean loginSuccess = usernameExists && jsonDataManager.getLoginHashMap().get(username).equals(password);
 
             if (loginSuccess) {
                 // Display a success message
                 JOptionPane.showMessageDialog(loginUI.getFrame(), "Connection success!");
 
                 // Set the current user using a Singleton
-                CurrentUserSingleton.getInstance().setCurrentUser(bank.getTestIndividual());
+                CurrentUserSingleton.getInstance().setCurrentUser(jsonDataManager.getTestIndividual());
 
                 //Close LoginUI
                 loginUI.getFrame().dispose();

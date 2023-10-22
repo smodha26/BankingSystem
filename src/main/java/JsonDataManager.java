@@ -2,12 +2,12 @@ package main.java;
 
 import java.util.HashMap;
 
-public class Bank {
+public class JsonDataManager {
 
     private Individual testIndividual;
     private HashMap<String,String> loginHashMap = new HashMap<>();
 
-    public Bank(){
+    public JsonDataManager(){
         //Create the test individual to see if the login logic works since we don't have a DataBase
         testIndividual = new Individual("Bob","test");
 
