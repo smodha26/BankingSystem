@@ -1,4 +1,4 @@
-package main.java;
+package com.mybank;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

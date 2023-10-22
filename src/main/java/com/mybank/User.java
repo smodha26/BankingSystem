@@ -1,4 +1,4 @@
-package main.java;
+package com.mybank;
 
 public class User {
 
