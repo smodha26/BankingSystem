@@ -4,19 +4,19 @@ import java.util.HashMap;
 
 public class JsonDataManager {
 
-    private Individual testIndividual;
+    private User testUser;
     private HashMap<String,String> loginHashMap = new HashMap<>();
 
     public JsonDataManager(){
         //Create the test individual to see if the login logic works since we don't have a DataBase
-        testIndividual = new Individual("Bob","test");
+        testUser = new User("Bob","test");
 
         //Add the individual username and password to the hashmap to verify login
-        loginHashMap.put(testIndividual.getUsername(), testIndividual.getPassword());
+        loginHashMap.put(testUser.getUsername(), testUser.getPassword());
     }
 
-    public Individual getTestIndividual() {
-        return testIndividual;
+    public User getTestIndividual() {
+        return testUser;
     }
 
     public HashMap<String, String> getLoginHashMap() {

@@ -11,7 +11,7 @@ public class BankingPlatformUI extends JFrame {
     private JTextField amountField;
     private JButton withdrawButton;
     private JButton depositButton;
-    private Individual individual = CurrentUserSingleton.getInstance().getCurrentUser();
+    private User user = CurrentUserSingleton.getInstance().getCurrentUser();
     private JTable transactionHistoryTable;
     private DefaultTableModel tableModel;
     private JScrollPane scrollPane;
@@ -23,7 +23,7 @@ public class BankingPlatformUI extends JFrame {
     }
 
     public BankingPlatformUI() {
-        setTitle("User : " + individual.getUsername());
+        setTitle("User : " + user.getUsername());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
         setLocationRelativeTo(null);

@@ -2,7 +2,7 @@ package main.java;
 
 public class CurrentUserSingleton {
     private static CurrentUserSingleton instance;
-    private Individual currentUser;
+    private User currentUser;
 
     private CurrentUserSingleton() {
         // Private constructor to prevent external instantiation
@@ -15,11 +15,11 @@ public class CurrentUserSingleton {
         return instance;
     }
 
-    public Individual getCurrentUser() {
+    public User getCurrentUser() {
         return currentUser;
     }
 
-    public void setCurrentUser(Individual user) {
+    public void setCurrentUser(User user) {
         this.currentUser = user;
     }
 }
