@@ -30,7 +30,7 @@ public class BankingPlatformUI extends JFrame {
 
         balanceLabel = new JLabel("Current Balance:");
         amountLabel = new JLabel("Enter Amount:");
-        currentBalanceLabel = new JLabel("0.00 $");
+        currentBalanceLabel = new JLabel(Float.toString(user.getBalance()) + " $");
         amountField = new JTextField(20);
 
         withdrawButton = new JButton("Withdraw");

@@ -106,7 +106,7 @@ public class BankingPlatformController {
 
     private void putDataIntoTransactionHistory(String transactionType, float amount){
         DateTimeFormatter realTime = DateTimeFormatter.ofPattern("yyyy-MM-dd | HH:mm");
-        Object[] rowData = {LocalDateTime.now().format(realTime), transactionType, amount};
+        Object[] rowData = {LocalDateTime.now().format(realTime), transactionType, amount + " $"};
         bankingPlatformUI.getTableModel().addRow(rowData);
         bankingPlatformUI.getTableModel().fireTableDataChanged();
     }
