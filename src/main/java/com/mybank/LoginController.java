@@ -16,10 +16,11 @@ public class LoginController {
 
         // Attach the ActionListener to the connectButton
         loginUI.getConnectButton().addActionListener(new ConnectButtonListener());
-
-        // Attach the ActionListener to the username and password text fields
         loginUI.getUsernameField().addActionListener(new ConnectButtonListener());
         loginUI.getPasswordField().addActionListener(new ConnectButtonListener());
+
+        // Attach the ActionListener to the signupButton
+        loginUI.getSignupButton().addActionListener(new SignupButtonListener());
     }
 
     private class ConnectButtonListener implements ActionListener {
@@ -41,6 +42,16 @@ public class LoginController {
                 // Display an error message for incorrect login
                 JOptionPane.showMessageDialog(loginUI.getFrame(), "Error: Wrong username or password...");
             }
+        }
+    }
+
+    private class SignupButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            SwingUtilities.invokeLater(() -> {
+                // Create a CreateAccountController instance and pass the CreateAccountUI and as parameters
+                new CreateAccountController(new CreateAccountUI(), jsonDataManager);
+            });
         }
     }
 

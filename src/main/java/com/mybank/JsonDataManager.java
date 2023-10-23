@@ -2,6 +2,8 @@ package com.mybank;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +41,7 @@ public class JsonDataManager {
         return false;
     }
 
-    private boolean doesUsernameExist(String username){
+    public boolean doesUsernameExist(String username){
         try {
             // Read the JSON file
             ObjectMapper objectMapper = new ObjectMapper();
@@ -61,9 +63,25 @@ public class JsonDataManager {
         return false;
     }
 
-    //test
-    public static void main(String[] args) {
-        JsonDataManager jsonDataManager = new JsonDataManager("src/main/java/com/mybank/user_accounts.json");
-        System.out.println(jsonDataManager.authenticateUser("bob","test"));
+    public void createAccount(String username, String password) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            File jsonFile = new File(this.file);
+            JsonNode root = objectMapper.readTree(jsonFile);
+
+            // Create a new user object
+            ObjectNode newUserNode = objectMapper.createObjectNode();
+            newUserNode.put("username", username.toLowerCase());
+            newUserNode.put("password", password);
+
+            // Append the new user node to the root
+            ArrayNode userArray = (ArrayNode) root;
+            userArray.add(newUserNode);
+
+            // Write the updated JSON data back to the file
+            objectMapper.writeValue(jsonFile, root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
