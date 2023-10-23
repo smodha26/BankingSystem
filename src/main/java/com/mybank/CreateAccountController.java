@@ -43,6 +43,7 @@ public class CreateAccountController {
 
                     jsonDataManager.createAccount(username,password);
 
+                    openLoginUI();
                     createAccountUI.getFrame().dispose();
 
                 }
