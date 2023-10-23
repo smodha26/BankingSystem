@@ -52,6 +52,8 @@ public class LoginController {
                 // Create a CreateAccountController instance and pass the CreateAccountUI and as parameters
                 new CreateAccountController(new CreateAccountUI(), jsonDataManager);
             });
+
+            loginUI.getFrame().dispose();
         }
     }
 
