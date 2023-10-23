@@ -1,3 +1,5 @@
+package com.mybank;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class BankingPlatformController {
     private BankingPlatformUI bankingPlatformUI;
-    private Individual individual = CurrentUserSingleton.getInstance().getCurrentUser();
+    private User user = CurrentUserSingleton.getInstance().getCurrentUser();
     private float amount;
 
     public BankingPlatformController(BankingPlatformUI bankingPlatformUI) {
@@ -26,13 +28,17 @@ public class BankingPlatformController {
             if(!input.isEmpty()){
                 // Get the amount from textField and parse it into Float for the calcul
                 amount = Float.parseFloat(bankingPlatformUI.getAmountField().getText());
-                boolean sufficientAmount = individual.getBalance()-amount>=0;
+                boolean sufficientAmount = user.getBalance()-amount>=0;
 
                 try{
                     //Verify if the number entered is not negative
                     if(amount >= 0){
+                        //Verify if the number entered is not 0
+                        if(amount == 0){
+                            JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Number can't be 0");
+                        }
                         //Verify if user has enough amount in balance to withdraw the requested amount
-                        if(sufficientAmount){
+                        else if(sufficientAmount){
                             withdrawBalance();
                             putDataIntoTransactionHistory("Withdraw",amount);
                         }
@@ -63,8 +69,14 @@ public class BankingPlatformController {
                 try{
                     //Verify if the number entered is not negative
                     if(amount >= 0){
-                        depositBalance();
-                        putDataIntoTransactionHistory("Deposit",amount);
+                        //Verify if the number entered is not 0
+                        if(amount == 0){
+                            JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Number can't be 0");
+                        }
+                        else{
+                            depositBalance();
+                            putDataIntoTransactionHistory("Deposit",amount);
+                        }
                     }
                     else if(amount < 0){
                         JOptionPane.showMessageDialog(bankingPlatformUI, "Error: Please enter a non-negative amount");
@@ -80,21 +92,21 @@ public class BankingPlatformController {
 
     private void withdrawBalance(){
         // Modify new Balance by calling the current individual (singleton)
-        individual.setBalance(individual.getBalance()-amount);
-        bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(individual.getBalance()));
+        user.setBalance(user.getBalance()-amount);
+        bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(user.getBalance()));
         JOptionPane.showMessageDialog(bankingPlatformUI, "Successful transaction");
     }
 
     private void depositBalance(){
         // Modify new Balance by calling the current individual (singleton)
-        individual.setBalance(individual.getBalance()+amount);
-        bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(individual.getBalance()));
+        user.setBalance(user.getBalance()+amount);
+        bankingPlatformUI.setCurrentBalanceLabel(String.valueOf(user.getBalance()));
         JOptionPane.showMessageDialog(bankingPlatformUI, "Successful transaction");
     }
 
     private void putDataIntoTransactionHistory(String transactionType, float amount){
         DateTimeFormatter realTime = DateTimeFormatter.ofPattern("yyyy-MM-dd | HH:mm");
-        Object[] rowData = {LocalDateTime.now().format(realTime), transactionType, amount};
+        Object[] rowData = {LocalDateTime.now().format(realTime), transactionType, amount + " $"};
         bankingPlatformUI.getTableModel().addRow(rowData);
         bankingPlatformUI.getTableModel().fireTableDataChanged();
     }
