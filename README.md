@@ -1,4 +1,4 @@
-# Banking System Platform
+# Banking System Project
 
 ## Project configuration and usage
 
