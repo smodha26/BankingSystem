@@ -34,8 +34,6 @@ public class LoginController {
                 JOptionPane.showMessageDialog(loginUI.getFrame(), "Connection success!");
                 // Set the current user using a Singleton
                 CurrentUserSingleton.getInstance().setCurrentUser(new User(username));
-                // Close LoginUI
-                loginUI.getFrame().dispose();
                 // Open the BankingPlatformUI when the login is successful
                 openBankingPlatformUI();
             } else {
@@ -62,5 +60,7 @@ public class LoginController {
             // Create a BankingPlatformController instance and pass the BankingPlatformUI as parameters
             new BankingPlatformController(new BankingPlatformUI());
         });
+
+        loginUI.getFrame().dispose();
     }
 }

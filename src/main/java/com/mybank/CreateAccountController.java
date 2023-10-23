@@ -17,7 +17,7 @@ public class CreateAccountController {
 
     private void openLoginUI() {
         SwingUtilities.invokeLater(() -> {
-            // Create a BankingPlatformController instance and pass the BankingPlatformUI as parameters
+            // Create a LoginController instance and pass the LoginUI and json file path as parameters
             new LoginController(new LoginUI(), jsonDataManager.getFile());
         });
     }
