@@ -30,7 +30,7 @@ public class JsonDataManager {
             if (root.isArray()) {
                 for (JsonNode userNode : root) {
                     String jsonUsername = userNode.get("username").asText();
-                    if (jsonUsername.equals(username.toLowerCase())) {
+                    if (jsonUsername.equals(username)) {
                         // Username matches, now check the password
                         String jsonPassword = userNode.get("password").asText();
                         if (jsonPassword.equals(password)) {
@@ -76,7 +76,7 @@ public class JsonDataManager {
 
             // Create a new user object
             ObjectNode newUserNode = objectMapper.createObjectNode();
-            newUserNode.put("username", username.toLowerCase());
+            newUserNode.put("username", username);
             newUserNode.put("password", password);
 
             // Append the new user node to the root

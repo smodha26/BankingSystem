@@ -29,7 +29,7 @@ public class CreateAccountController {
             boolean isUsernameFieldEmpty = createAccountUI.getUsernameField().getText().isEmpty();
             boolean isPasswordFieldEmpty = createAccountUI.getPasswordField().getText().isEmpty();
 
-            String username = createAccountUI.getUsernameField().getText();
+            String username = createAccountUI.getUsernameField().getText().toLowerCase();
             String password = createAccountUI.getPasswordField().getText();
 
             if(isUsernameFieldEmpty){

@@ -26,7 +26,7 @@ public class LoginController {
     private class ConnectButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String username = loginUI.getUsernameField().getText();
+            String username = loginUI.getUsernameField().getText().toLowerCase();
             String password = new String(loginUI.getPasswordField().getPassword());
 
             if (jsonDataManager.authenticateUser(username,password)) {
