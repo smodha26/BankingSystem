@@ -7,6 +7,8 @@ To run the Banking Platform application:
 1. Execute the main method from (`AppLauncher.java`) class to start the application.
 2. For authentication, you can use the test users provided in `the user_accounts.json` file. Alternatively, you can sign up to create your own account, and your information will be stored in the same file.
 
+Note : Before working with the project, make sure to have JDK installed, setup your SDK, and use 'mvn clean install' to download all necessary dependencies with Maven.
+
 ## Project Description
 
 The Banking Platform is a Java-based application that simulates a basic banking system. It allows users to interact with their bank accounts by making deposits and withdrawals while providing a transaction history to track their financial activity and view their current balance. The project utilizes the Jackson library for JSON data processing and employs Maven for efficient dependencies management. Furthermore, the application uses a JSON file as its database to store user account credentials securely. Users also have the option to create an account, ensuring that the chosen username is unique and doesn't already exist in the system.
@@ -32,10 +34,6 @@ The project follows the Model-View-Controller (MVC) architectural pattern. This 
 - **View**: Implemented in the `LoginUI`, `CreateAccountUI` and the `BankingPlatformUI` class, it provides the user interface for interacting with the application.
 
 - **Controller**: The application logic is separated into controller classes (`LoginController`, `CreateAccountController`  and `BankingPlatformController`), responsible for handling user authentication, signup, banking operations, and interactions between the model and view.
-
-## Project Structure
-
-The project is organized with a separation of concerns between the user interface (UI) and the application logic:
 
 ### Database
 
