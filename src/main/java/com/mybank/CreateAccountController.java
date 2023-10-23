@@ -20,6 +20,7 @@ public class CreateAccountController {
             // Create a LoginController instance and pass the LoginUI and json file path as parameters
             new LoginController(new LoginUI(), jsonDataManager.getFile());
         });
+        createAccountUI.getFrame().dispose();
     }
 
     private class SignupButtonListener implements ActionListener{
@@ -44,8 +45,6 @@ public class CreateAccountController {
                     jsonDataManager.createAccount(username,password);
 
                     openLoginUI();
-                    createAccountUI.getFrame().dispose();
-
                 }
                 else JOptionPane.showMessageDialog(createAccountUI.getFrame(), "Error: Username is taken");
             }
