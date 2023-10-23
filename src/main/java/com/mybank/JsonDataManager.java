@@ -2,6 +2,7 @@ package com.mybank;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -13,6 +14,10 @@ public class JsonDataManager {
 
     public JsonDataManager(String file){
         this.file = file;
+    }
+
+    public String getFile(){
+        return file;
     }
 
     public boolean authenticateUser(String username, String password){
@@ -78,8 +83,9 @@ public class JsonDataManager {
             ArrayNode userArray = (ArrayNode) root;
             userArray.add(newUserNode);
 
-            // Write the updated JSON data back to the file
-            objectMapper.writeValue(jsonFile, root);
+            // Write the updated JSON data back to the file with pretty printing
+            ObjectWriter writer = objectMapper.writerWithDefaultPrettyPrinter();
+            writer.writeValue(jsonFile, root);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -15,6 +15,12 @@ public class CreateAccountController {
         createAccountUI.getSignupButton().addActionListener(new SignupButtonListener());
     }
 
+    private void openLoginUI() {
+        SwingUtilities.invokeLater(() -> {
+            // Create a BankingPlatformController instance and pass the BankingPlatformUI as parameters
+            new LoginController(new LoginUI(), jsonDataManager.getFile());
+        });
+    }
 
     private class SignupButtonListener implements ActionListener{
         @Override
@@ -38,9 +44,12 @@ public class CreateAccountController {
                     jsonDataManager.createAccount(username,password);
 
                     createAccountUI.getFrame().dispose();
+
                 }
                 else JOptionPane.showMessageDialog(createAccountUI.getFrame(), "Error: Username is taken");
             }
         }
     }
+
+
 }
