@@ -4,23 +4,18 @@
 
 To run the Banking Platform application:
 
-1. Make sure you have Java Development Kit (JDK) installed on your system. 
-2. Build the project, choose a SDK and compile the Java source files.
-3. Execute the main class (`Main.java`) to start the application.
-4. Please use the following login authentication information: `Username: Bob` | `Password: test`
+1. Execute the main method from (`AppLauncher.java`) class to start the application.
+2. For authentication, you can use the test users provided in `the user_accounts.json` file. Alternatively, you can sign up to create your own account, and your information will be stored in the same file.
 
 ## Project Description
 
-The Banking Platform is a Java-based application that simulates a basic banking system. It allows users to interact with their bank accounts by making deposits and withdrawals.
+The Banking Platform is a Java-based application that simulates a basic banking system. It allows users to interact with their bank accounts by making deposits and withdrawals while providing a transaction history to track their financial activity and view their current balance. The project utilizes the Jackson library for JSON data processing and employs Maven for efficient dependencies management. Furthermore, the application uses a JSON file as its database to store user account credentials securely. Users also have the option to create an account, ensuring that the chosen username is unique and doesn't already exist in the system.
 
-### Login Authentication & Test Account
+### Login Authentication & Test Accounts
 
-To facilitate easy usage and testing of the application, a test account is provided within the project. This account serves as a demonstration of the application's functionality in the absence of a database. The test account details are as follows:
+To facilitate easy usage and testing of the application, test accounts are already provided within the file `user_accounts.json`. 
 
-- Username: "Bob"
-- Password: "test"
-
-Please use these credentials for a successful login.
+You can also Signup and create a new account.
 
 ## Design Patterns
 
@@ -32,26 +27,16 @@ The project utilizes the Singleton design pattern through the `CurrentUserSingle
 
 The project follows the Model-View-Controller (MVC) architectural pattern. This separation of concerns helps maintain a clear distinction between different aspects of the application:
 
-- **Model**: Represented by the `Bank` and the `Individual` class, it encapsulates the data and business logic, including user account details and balance.
+- **Model**: Represented by the `User` class, it encapsulates user data, including user account details such as balance, username, and password. The `JsonDataManager` class utilizes the Jackson library to manage the logic for the JSON file database logic.
 
-- **View**: Implemented in the `LoginUI` and the `BankingPlatformUI` class, it provides the user interface for interacting with the application.
+- **View**: Implemented in the `LoginUI`, `CreateAccountUI` and the `BankingPlatformUI` class, it provides the user interface for interacting with the application.
 
-- **Controller**: The application logic is separated into controller classes (`LoginController` and `BankingPlatformController`), responsible for handling user authentication, banking operations, and interactions between the model and view.
+- **Controller**: The application logic is separated into controller classes (`LoginController`, `CreateAccountController`  and `BankingPlatformController`), responsible for handling user authentication, signup, banking operations, and interactions between the model and view.
 
 ## Project Structure
 
 The project is organized with a separation of concerns between the user interface (UI) and the application logic:
 
-### User Interface (UI)
+### Database
 
-- The user interface is implemented in the `LoginUI` and the `BankingPlatformUI` class.
-- `BankingPlatformUI` provides a graphical user interface for users to view their current balance, enter deposit or withdrawal amounts, and perform banking operations.
-- The UI elements are designed using Java Swing components.
-
-### Application Logic
-
-- The application logic is implemented in separate controller classes.
-- The `LoginController` class handles user authentication and login-related functionality.
-- The `BankingPlatformController` class manages banking operations, such as deposits and withdrawals.
-- The `Individual` class represents individual user data, including username, password, and balance.
-- The `CurrentUserSingleton` class manages the current user's instance using the Singleton pattern.
+To simplify this project, the application uses a JSON file, `user_accounts.json` as a database to store the usernames and passwords of every user created. This data management is facilitated by the `JsonDataManager` class, which relies on the Jackson library. The Jackson library is configured in the project's pom.xml file using Maven for dependencies management.
